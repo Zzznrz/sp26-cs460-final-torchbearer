@@ -2,9 +2,8 @@
 CS 460 – Algorithms: Final Programming Assignment
 The Torchbearer
 
-Student Name: ___________________________
-Student ID:   ___________________________
-
+Student Name: Zhongyu Hu
+Student ID:   134165574
 INSTRUCTIONS
 ------------
 - Implement every function marked TODO.
