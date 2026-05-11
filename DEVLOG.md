@@ -3,19 +3,11 @@
 **Student Name:** Zhongyu Hu
 **Student ID:** 134165574
 
-> Instructions: Write at least four dated entries. Required entry types are marked below.
-> Two to five sentences per entry is sufficient. Write entries as you go, not all in one
-> sitting. Graders check that entries reflect genuine work across multiple sessions.
-> Delete all blockquotes before submitting.
-
 ---
 
-## Entry 1 – [Date]: Initial Plan
+## Entry 1 – [05/10/2026]: Initial Plan
 
-> Required. Write this before writing any code. Describe your plan: what you will
-> implement first, what parts you expect to be difficult, and how you plan to test.
-
-_Your entry here._
+This problem is finding a path that starts from S, visits all relics, and ends at T with minimum total cost. The key is not just finding a shortest path, but an optimal collection order and path. I plan to first compute the shortest distances between every nodes, then try different orders to find the optimal path. To test my code, I will use new graphs to verify correctness.
 
 ---
 
