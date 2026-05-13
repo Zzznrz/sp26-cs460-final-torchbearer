@@ -11,12 +11,9 @@ This problem is finding a path that starts from S, visits all relics, and ends a
 
 ---
 
-## Entry 2 – [Date]: [Short description]
+## Entry 2 – [05/13/2026]: Dijkstra Bug Fix
 
-> Required. At least one entry must describe a bug, wrong assumption, or design change
-> you encountered. Describe what went wrong and how you resolved it.
-
-_Your entry here._
+In `run_dijkstra()` programming, I referred to the example code provided in the assignment and GeeksforGeeks, but I made a mistake in the priority queue implementation. I used `(node, distance)` to store, which would not pop the node with the minimum distance because the `heapq` in Python sorts based on the first element of the tuple. I resolved it by changing to `(distance, node)`. This was a crucial fix for the Dijkstra's algorithm function.
 
 ---
 
