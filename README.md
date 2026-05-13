@@ -4,26 +4,18 @@
 **Student ID:** 134165574
 **Course:** CS 460 – Algorithms | Spring 2026
 
-> This README is your project documentation. Write it the way a developer would document
-> their design decisions , bullet points, brief justifications, and concrete examples where
-> required. You are not writing an essay. You are explaining what you built and why you built
-> it that way. Delete all blockquotes like this one before submitting.
-
 ---
 
 ## Part 1: Problem Analysis
 
-> Document why this problem is not just a shortest-path problem. Three bullet points, one
-> per question. Each bullet should be 1-2 sentences max.
-
 - **Why a single shortest-path run from S is not enough:**
-  _Your answer here._
+  A single shortest-path from S would not determine the visiting order, but this problem requires visiting all relics in some orders.
 
 - **What decision remains after all inter-location costs are known:**
-  _Your answer here._
+  The order of visiting relics. After knowing all inter-location costs, it requires to find an optimal order through these relics with minimum cost.
 
 - **Why this requires a search over orders (one sentence):**
-  _Your answer here._
+  Because it searches the lowest cost order among many possible orders.
 
 ---
 
@@ -31,33 +23,27 @@
 
 ### Part 2a: Source Selection
 
-> List the source node types as a bullet list. For each, one-line reason.
-
 | Source Node Type | Why it is a source |
 |---|---|
-| _node type_ | _one-line reason_ |
-| _node type_ | _one-line reason_ |
+| spawn | It is the start node of the path, it requires the shortest distance from entrance to all specific nodes. |
+| relic | In order to compute all possible order, it requires the shortest distance from each relic to other relics and exit node. |
 
 ### Part 2b: Distance Storage
 
-> Fill in the table. No prose required.
-
 | Property | Your answer |
 |---|---|
-| Data structure name | |
-| What the keys represent | |
-| What the values represent | |
-| Lookup time complexity | |
-| Why O(1) lookup is possible | |
+| Data structure name | Dictionary |
+| What the keys represent | The current node |
+| What the values represent | The shortest distance from source node to each current node |
+| Lookup time complexity | `O(1)` |
+| Why O(1) lookup is possible | Because a hash table allows direct access to values using keys |
 
 ### Part 2c: Precomputation Complexity
 
-> State the total complexity and show the arithmetic. Two to three lines max.
-
-- **Number of Dijkstra runs:** _your answer_
-- **Cost per run:** _your answer_
-- **Total complexity:** _your answer_
-- **Justification (one line):** _your answer_
+- **Number of Dijkstra runs:** `k + 1`
+- **Cost per run:** Let `n = |V|`, `m = |E|`, `k = |M|`. Single shortest-path run costs `O(m log n)`.
+- **Total complexity:** `O((k + 1) * m log n) = O(k * m log n)`
+- **Justification (one line):** Since every source node including entrance and all relics requires a Dijkstra run, the total number of runs is `k + 1`, and each run has a complexity of `O(m log n)`, leading to an total complexity of `O(k * m log n)`.
 
 ---
 

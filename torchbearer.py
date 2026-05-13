@@ -33,8 +33,16 @@ def explain_problem():
 
     TODO
     """
-    return "TODO"
+    return """
+Why a single shortest-path run from S is not enough:
+A single shortest-path from S would not determine the visiting order, but this problem requires visiting all relics in some orders.
 
+What decision remains after all inter-location costs are known:
+The order of visiting relics. After knowing all inter-location costs, it requires to find an optimal order through these relics with minimum cost.
+
+Why this requires a search over orders (one sentence):
+Because it searches the lowest cost order among many possible orders.
+"""
 
 # =============================================================================
 # PART 2
@@ -55,7 +63,8 @@ def select_sources(spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    sources = [spawn] + relics
+    return sources
 
 
 def run_dijkstra(graph, source):
@@ -74,7 +83,23 @@ def run_dijkstra(graph, source):
 
     TODO
     """
-    pass
+    inf = float('inf')
+    dist = {}
+    for node in graph:
+        dist[node] = inf
+    dist[source] = 0
+    pq = []
+    heapq.heappush(pq,(0, source))
+
+    while pq:
+        d, u = heapq.heappop(pq)
+        if d > dist[u]:
+            continue
+        for v, w in graph[u]:
+            if dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+                heapq.heappush(pq, (dist[v], v))
+    return dist
 
 
 def precompute_distances(graph, spawn, relics, exit_node):
@@ -94,7 +119,10 @@ def precompute_distances(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    table = {}
+    for source in select_sources(spawn, relics):
+        table[source] =  run_dijkstra(graph, source)
+    return table
 
 
 # =============================================================================
