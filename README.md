@@ -49,38 +49,28 @@
 
 ## Part 3: Algorithm Correctness
 
-> Document your understanding of why Dijkstra produces correct distances.
-> Bullet points and short sentences throughout. No paragraphs.
-
 ### Part 3a: What the Invariant Means
 
-> Two bullets: one for finalized nodes, one for non-finalized nodes.
-> Do not copy the invariant text from the spec.
-
 - **For nodes already finalized (in S):**
-  _Your answer here._
+  The shortest distance from the source to these nodes is confirmed and always holds true through the iterations.
 
 - **For nodes not yet finalized (not in S):**
-  _Your answer here._
+  The distance from the source to these nodes is an upper bound of the actual shortest distance, and it might update shorter through the iterations.
 
 ### Part 3b: Why Each Phase Holds
 
-> One to two bullets per phase. Maintenance must mention nonnegative edge weights.
-
 - **Initialization : why the invariant holds before iteration 1:**
-  _Your answer here._
+  Before iteration 1, the set S is empty, so there are no finalized nodes. The distance to the source node itself is 0, which is correct, and the distances to all other nodes are set to infinity, which is an upper bound.
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Your answer here._
+  The node comes from the priority queue with the smallest distance, and since all edge weights are non-negative, any path through this node to other nodes cannot be shorter than the already known distance to this node. Therefore, finalizing this node is correct.
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _Your answer here._
+  When the algorithm ends, all nodes have been finalized, and the shortest distance from the source to every node is confimed.
 
 ### Part 3c: Why This Matters for the Route Planner
 
-> One sentence connecting correct distances to correct routing decisions.
-
-_Your answer here._
+Dijkstra's algorithm determines the shortest paths from the source to all other nodes, which is essential for the route planner to compute the possible cost of different orders of visiting relics.
 
 ---
 
@@ -88,20 +78,27 @@ _Your answer here._
 
 ### Why Greedy Fails
 
-> State the failure mode. Then give a concrete counter-example using specific node names
-> or costs (you may use the illustration example from the spec). Three to five bullets.
+- **The failure mode:** The greedy approach always picks the next relic with the lowest immediate cost.
 
-- **The failure mode:** _Your answer here._
-- **Counter-example setup:** _Your answer here._
-- **What greedy picks:** _Your answer here._
-- **What optimal picks:** _Your answer here._
-- **Why greedy loses:** _Your answer here._
+- **Counter-example setup:** 
+  
+  **Entrance:** S | **Relic chambers:** B, C | **Exit:** T
+  
+  After computing cheapest inter-location travel costs, suppose you have:
+
+  | From \ To | B   | C   | T   |
+  |-----------|-----|-----|-----|
+  | S         | 1   | 2   | --  |
+  | B         | --  | 100 | 1   |
+  | C         | 1   | --  | 100 |
+
+- **What greedy picks:** S -> B -> C -> T &nbsp; total fuel = 1 + 100 + 100 = **201**
+- **What optimal picks:** S -> C -> B -> T &nbsp; total fuel = 2 + 1 + 1 = **4**
+- **Why greedy loses:** The greedy loses because it only considers the immediate cost to the next relic, which leads to high total cost at the end, while the optimal considers the overall cost of the entire path.  
 
 ### What the Algorithm Must Explore
 
-> One bullet. Must use the word "order."
-
-- _Your answer here._
+- Different orders of visiting all relics
 
 ---
 
