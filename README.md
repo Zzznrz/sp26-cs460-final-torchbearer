@@ -106,33 +106,26 @@ Dijkstra's algorithm determines the shortest paths from the source to all other 
 
 ### Part 5a: State Representation
 
-> Document the three components of your search state as a table.
-> Variable names here must match exactly what you use in torchbearer.py.
-
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
-| Current location | | | |
-| Relics already collected | | | |
-| Fuel cost so far | | | |
+| Current location | `current_loc` | node | The location of torchbearer currently |
+| Relics already collected | `relics_remaining` | set | The set of relics the torchbearer not visited yet |
+| Fuel cost so far | `cost_so_far` | float | Total fuel cost from the source to the current node so far |
 
 ### Part 5b: Data Structure for Visited Relics
 
-> Fill in the table.
-
 | Property | Your answer |
 |---|---|
-| Data structure chosen | |
-| Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected | Time complexity: |
-| Operation: unmark a relic (backtrack) | Time complexity: |
-| Why this structure fits | |
+| Data structure chosen | set |
+| Operation: check if relic already collected | Time complexity: `O(n)` |
+| Operation: mark a relic as collected | Time complexity: `O(1)` |
+| Operation: unmark a relic (backtrack) | Time complexity: `O(1)` |
+| Why this structure fits | `Set()` only store one unique value to avoid confilt |
 
 ### Part 5c: Worst-Case Search Space
 
-> Two bullets.
-
-- **Worst-case number of orders considered:** _Your answer (in terms of k)._
-- **Why:** _One-line justification._
+- **Worst-case number of orders considered:** `k!`
+- **Why:** For the first relic, it required `k` options, then second required `k - 1` options, and so on. The worst total cost would be `k * (k -1) * (k - 2) * ... * 1 = k!`, and this case is travasal every relics to get  without pruning.
 
 ---
 
@@ -140,30 +133,24 @@ Dijkstra's algorithm determines the shortest paths from the source to all other 
 
 ### Part 6a: Best-So-Far Tracking
 
-> Three bullets.
-
-- **What is tracked:** _Your answer here._
-- **When it is used:** _Your answer here._
-- **What it allows the algorithm to skip:** _Your answer here._
+- **What is tracked:** The lowest total cost found so far for a complete path that visits all relics and reaches the exit.
+- **When it is used:** During the search, before exploring a new path, the algorithm compares the current path's cost with the best-so-far cost. If the current path's cost exceeds the best-so-far cost, it prunes that path and does not explore it further.
+- **What it allows the algorithm to skip:** It allows the algorithm to skip exploring paths that are guaranteed to be more expensive than the best solution found so far, thus reducing the search space and improving efficiency.
 
 ### Part 6b: Lower Bound Estimation
 
-> Three bullets.
-
-- **What information is available at the current state:** _Your answer here._
-- **What the lower bound accounts for:** _Your answer here._
-- **Why it never overestimates:** _Your answer here._
+- **What information is available at the current state:** The current location, the set of relics remaining to be collected, and the cost incurred so far.
+- **What the lower bound accounts for:** The lower bound accounts for the minimum possible additional cost to collect all remaining relics and reach the exit, based on the precomputed shortest distances between nodes.
+- **Why it never overestimates:** The lower bound is calculated using the shortest distances, which represent the minimum cost to reach the remaining relics and exit. Since it is based on the shortest paths, it cannot overestimate the actual cost required to complete the path.
 
 ### Part 6c: Pruning Correctness
 
-> One to two bullets. Explain why pruning is safe.
-
-- _Your answer here._
+- The best-so-far tracking is safe because it only prunes paths that have already exceeded the cost of the best complete path found, ensuring that it does not eliminate any potential optimal solutions.
 
 ---
 
 ## References
 
-> Bullet list. If none beyond lecture notes, write that.
-
-- _Your references here._
+- lecture Notes
+- GeeksforGeeks Dijkstra's Algorithm: https://www.geeksforgeeks.org/dsa/dijkstras-shortest-path-algorithm-greedy-algo-7/
+- Youtube Dijkstra's Algorithm Loop Invariant: https://www.youtube.com/watch?v=Kv2Y4rLJO1U
