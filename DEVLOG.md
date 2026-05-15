@@ -23,27 +23,22 @@ _Your entry here._
 
 ---
 
-## Entry 4 – [Date]: Post-Implementation Reflection
+## Entry 4 – [5/13/2026]: Post-Implementation Reflection
 
-> Required. Written after your implementation is complete. Describe what you would
-> change or improve given more time.
-
-_Your entry here._
+Given more time, I would implement a more efficient search algorithm for finding the optimal order of visiting relics. Additionally, I would add more test cases, like edge cases with varying graph structures and numbers of relics.
 
 ---
 
 ## Final Entry – [Date]: Time Estimate
 
-> Required. Estimate minutes spent per part. Honesty is expected; accuracy is not graded.
-
 | Part | Estimated Hours |
 |---|---|
-| Part 1: Problem Analysis | |
-| Part 2: Precomputation Design | |
-| Part 3: Algorithm Correctness | |
-| Part 4: Search Design | |
-| Part 5: State and Search Space | |
-| Part 6: Pruning | |
-| Part 7: Implementation | |
-| README and DEVLOG writing | |
-| **Total** | |
+| Part 1: Problem Analysis | 0.5 |
+| Part 2: Precomputation Design | 0.5 + 1 |
+| Part 3: Algorithm Correctness | 1 |
+| Part 4: Search Design | 0.5 |
+| Part 5: State and Search Space | 1 + 1 |
+| Part 6: Pruning | 1 + 0.5 |
+| Part 7: Implementation | 0.5 |
+| README and DEVLOG writing | 1 for DEVLOG totally |
+| **Total** | 8.5 |
