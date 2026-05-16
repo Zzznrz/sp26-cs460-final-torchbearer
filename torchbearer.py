@@ -232,7 +232,7 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
     relics_visited_order = []
     cost_so_far = 0
     _explore(dist_table, current_loc, relics_remaining, relics_visited_order, cost_so_far, exit_node, best)
-    return best
+    return best[0], best[1]
 
 
 def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
@@ -269,21 +269,21 @@ def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
         total_cost = cost_so_far + dist_table[current_loc][exit_node]
         if total_cost < best[0]:
             best[0] = total_cost
-            best[1] = relics_visited_order
-        return
+            best[1] = relics_visited_order.copy()
+        return 
         
     # recursive case
     for relic in list(relics_remaining):
-        cost_so_far = cost_so_far + dist_table[current_loc][relic]
+        new_cost = cost_so_far + dist_table[current_loc][relic]
         # pruning
         # If current cost is greater than best so far, it is unnesseray to keep recursion since all edges are non-negative and the cost will bigger.
-        if cost_so_far >= best[0]:
+        if new_cost >= best[0]:
             continue
         relics_remaining.remove(relic)
         relics_visited_order.append(relic)
-        _explore(dist_table, relic, relics_remaining, relics_visited_order, cost_so_far, exit_node, best)
+        _explore(dist_table, relic, relics_remaining, relics_visited_order, new_cost, exit_node, best)
         relics_remaining.add(relic)
-        relics_visited_order.remove(relic)
+        relics_visited_order.pop()
 
 
 # =============================================================================

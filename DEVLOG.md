@@ -17,9 +17,9 @@ In `run_dijkstra()` programming, I referred to the example code provided in the 
 
 ---
 
-## Entry 3 – [Date]: [Short description]
+## Entry 3 – [05/15/2026]: State Construction Bug Fix
 
-_Your entry here._
+In resursion of the `_expore()` function, I made a mistake in updating the `cost_so_far` variable. I directly updated `cost_so_far` without creating a new variable for the recursive call, which caused the cost to accumulate incorrectly across different paths. I fixed it by creating a new variable `new_cost`. This garenteed each recursive call has its own cost calculation.
 
 ---
 
