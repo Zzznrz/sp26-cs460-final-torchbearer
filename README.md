@@ -117,7 +117,7 @@ Dijkstra's algorithm determines the shortest paths from the source to all other 
 | Property | Your answer |
 |---|---|
 | Data structure chosen | set |
-| Operation: check if relic already collected | Time complexity: `O(n)` |
+| Operation: check if relic already collected | Time complexity: `O(1)` |
 | Operation: mark a relic as collected | Time complexity: `O(1)` |
 | Operation: unmark a relic (backtrack) | Time complexity: `O(1)` |
 | Why this structure fits | `Set()` only store one unique value to avoid confilt |
